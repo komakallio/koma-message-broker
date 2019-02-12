@@ -10,5 +10,5 @@ subSocket.subscribe('');
 
 /* Publish all ZeroMQ messages with topic to corresponding Socket.io room */
 subSocket.on('message', (topic, message) => {
-  pubSocket.to(topic).emit(message);
+  pubSocket.to(topic).emit('msg', message);
 });
