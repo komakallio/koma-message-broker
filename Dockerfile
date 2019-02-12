@@ -1,6 +1,11 @@
 FROM node:11.9.0-alpine
 WORKDIR /kkmessagebroker
 COPY . /kkmessagebroker
-RUN npm install --only=production
+RUN apk add --no-cache --virtual .gyp \
+        python \
+        make \
+        g++ \
+        && npm install --only=production \
+        && apk del .gyp
 EXPOSE 3000
 CMD ["npm", "start"]
